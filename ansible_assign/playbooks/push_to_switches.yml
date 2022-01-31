@@ -1,0 +1,16 @@
+
+---
+- hosts: spine
+  gather_facts: no
+  tasks:
+  - name: Push spine configurations
+    eos_config:
+      src: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}.cfg"
+
+
+- hosts: leaf
+  gather_facts: no
+  tasks:
+  - name: Push leaf configurations
+    eos_config:
+      src: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}.cfg"

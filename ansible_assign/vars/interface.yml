@@ -1,0 +1,101 @@
+spine1:
+  interface:
+    vlan10:
+        ipv4: 10.50.10.252
+        mask: 24
+        ipv4_vir: 10.50.10.254
+    vlan20:
+        ipv4: 10.50.20.252
+        mask: 24
+        ipv4_vir: 10.50.20.254
+    vlan4094:
+      ipv4: 10.0.0.4
+      mask: 31
+  VARP:
+    mac_vir: aaaa.aaaa.aaaa
+  MLAG:
+    peer-link: po999
+    peer-address: 10.0.0.5
+    domain_id: mlag1
+    local-interface: vla4094
+
+spine2:
+  interface:
+    vlan10:
+        ipv4: 10.50.10.253
+        mask: 24
+        ipv4_vir: 10.50.10.254
+    vlan20:
+        ipv4: 10.50.20.253
+        mask: 24
+        ipv4_vir: 10.50.20.254
+    vlan4094:
+      ipv4: 10.0.0.5
+      mask: 31
+  VARP:
+    mac_vir: aaaa.aaaa.aaaa
+  MLAG:
+    peer-link: po999
+    peer-address: 10.0.0.4
+    domain_id: mlag1
+    local-interface: vla4094
+    
+leaf1:
+  interface:
+    vlan4094:
+      ipv4: 10.0.0.0
+      mask: 31
+  MLAG:
+    peer-link: po999
+    peer-address: 10.0.0.1
+    domain_id: mlag2
+    local-interface: vla4094
+
+
+leaf2:
+  interface:
+    vlan4094:
+      ipv4: 10.0.0.1
+      mask: 31
+  MLAG:
+    peer-link: po999
+    peer-address: 10.0.0.0
+    domain_id: mlag2
+    local-interface: vla4094
+
+leaf3:
+  interface:
+    vlan4094:
+      ipv4: 10.0.0.2
+      mask: 31
+  MLAG:
+    peer-link: po999
+    peer-address: 10.0.0.3
+    domain_id: mlag3
+    local-interface: vla4094
+    
+leaf4:
+  interface:
+    vlan4094:
+      ipv4: 10.0.0.3
+      mask: 31
+  MLAG:
+    peer-link: po999
+    peer-address: 10.0.0.2
+    domain_id: mlag3
+    local-interface: vla4094
+
+host1:  
+  interface:
+    port-channel12:
+      ipv4: 10.50.10.1
+      mask: 24
+  
+host2:
+  interface:
+    vlan10:
+      ipv4: 10.50.10.2
+      mask: 24
+    vlan20:
+      ipv4: 10.50.20.2
+      mask: 24
